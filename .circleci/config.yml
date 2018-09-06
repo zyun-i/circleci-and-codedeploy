@@ -33,8 +33,10 @@ jobs:
           paths:
             - ".git"
   test:
+    steps:
       - run: php -v
   deploy:
+    steps:
       - run: php -v
 
 workflows:
