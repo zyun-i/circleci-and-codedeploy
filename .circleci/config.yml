@@ -14,18 +14,19 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - dot-git-cache-{{ .Environment.CACHE_KEY }}-{{ .Branch }}-{{ .Revision }}
-            - dot-git-cache-{{ .Environment.CACHE_KEY }}-{{ .Branch }}-
-            - dot-git-cache-{{ .Environment.CACHE_KEY }}-
+            - dot-git-cache-{{ .Branch }}-{{ .Revision }}
+            - dot-git-cache-{{ .Branch }}-
+            - dot-git-cache-
 
       - checkout
 
       - run: php -v
 
       - save_cache:
-          key: dot-git-cache-{{ .Environment.CACHE_KEY }}-{{ .Branch }}-{{ .Revision }}
+          key: dot-git-cache-{{ .Branch }}-{{ .Revision }}
           paths:
             - ".git"
+
   test:
     docker:
       - image: circleci/php:5.6-node-browsers
