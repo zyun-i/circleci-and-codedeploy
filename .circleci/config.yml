@@ -34,7 +34,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run: ls -l ~/.aws
+      - run: ls -la ~/
 
   deploy:
     docker:
@@ -51,6 +51,8 @@ workflows:
     jobs:
       - build
       - test
+          requires:
+            - build
       - hold:
           type: approval
           requires:
